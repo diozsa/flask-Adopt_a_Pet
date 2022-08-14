@@ -1,0 +1,22 @@
+{{ form.hidden_tag() }}
+
+{% for field in form if field.widget.input_type != 'hidden'%}
+
+<div class='form-group'>
+  {{ field.label }}
+  
+  {{ field (class="form-control")}}
+
+<!-- The BooleanField field should be rendered separately
+if using form-control - checkbox not lining up -->
+  <span>
+      {% if field.errors %}
+        {% for error in field.errors %}
+	        <b class="text-danger">{{ error }}</b>
+        {% endfor %}
+      {% endif %}
+    </span>
+
+</div>
+
+{% endfor %}
